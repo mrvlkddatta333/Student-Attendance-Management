@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Student Dashboard</title>
+{% endblock %}
+
+{% block style %}
+<style>
+    /* Custom CSS styles */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        /* Light background color */
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+    }
+
+    .card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        margin-bottom: 20px;
+        transition: transform 0.3s ease;
+        height: 100%;
+        /* Ensure all cards have equal height */
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+    }
+
+    .card-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .card-description {
+        color: #666;
+        margin-bottom: 15px;
+    }
+
+    .card-link {
+        display: block;
+        margin-top: auto;
+        /* Align link to bottom of card */
+        text-decoration: none;
+        color: #007bff;
+        /* Blue color for links */
+    }
+
+    .btn-logout {
+        width: 100%;
+        max-width: 200px;
+        margin: 20px auto 0;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <h3 class="card-title">View Enrolled Courses</h3>
+                <p class="card-description">Browse the list of courses you are enrolled in.</p>
+                <a href="{{url_for('student.view_enrolled_courses')}}" class="card-link">Go to Enrolled Courses</a>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <h3 class="card-title">View Attendance</h3>
+                <p class="card-description">Check your attendance percentage for enrolled courses.</p>
+                <a href="{{url_for('student.view_attendance_percentage')}}" class="card-link">Go to Attendance</a>
+            </div>
+        </div>
+    </div>
+    <div class="text-center mt-4">
+        <a href="{{url_for('student.logout')}}" class="btn btn-danger btn-logout">Logout</a>
+    </div>
+</div>
+{% endblock %}

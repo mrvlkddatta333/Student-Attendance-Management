@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>Student Attendance</title>
+{% endblock %}
+
+{% block style %}
+<style>
+    /* Custom CSS styles */
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        /* Light background color */
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+    }
+
+    /* Table Styles */
+    .table-container {
+        overflow-x: auto;
+        /* Enable horizontal scrolling */
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+        white-space: nowrap;
+        /* Prevent text wrapping */
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    .btn-back {
+        margin-top: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Student Attendance</h2>
+    <div class="table-container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Student Name</th>
+                    <th>Course</th>
+                    <th>Days Present</th>
+                    <th>Days Absent</th>
+                    <th>Total Days</th>
+                    <th>Attendance Percentage</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in student_attendance %}
+                <tr>
+                    <td>{{ student.student_name }}</td>
+                    <td>{{ student.course_name }}</td>
+                    <td>{{ student.days_present }}</td>
+                    <td>{{ student.days_absent }}</td>
+                    <td>{{ student.total_days }}</td>
+                    {% if student.attendance_percentage %}
+                    <td>{{ "%.2f"|format(student.attendance_percentage) }}%</td>
+                    {% else %}
+                    <td>No Attendance</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <a href="{{ url_for('faculty.dashboard') }}" class="btn btn-secondary btn-back">Back</a>
+</div>
+{% endblock %}
